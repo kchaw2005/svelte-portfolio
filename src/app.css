@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@layer utilities {
+
+  @keyframes drop-fade {
+    0%   { opacity: 0; transform: translateY(-12px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .animate-drop-fade {
+    animation: drop-fade 0.5s ease-out forwards;
+  }
+
+  .nav-link {
+    @apply text-gray-500 hover:text-indigo-500 transition;
+  }
+}
+
+@layer components {
+    .nav-bar-pill {
+      @apply flex items-center gap-8 justify-between gap-8
+             px-8 py-2 h-12
+             bg-white/80 border border-black/80
+             rounded-full backdrop-blur-sm shadow-md
+             w-full max-w-screen-lg mx-auto;
+    }
+  }
