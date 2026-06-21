@@ -1,5 +1,28 @@
 @import "tailwindcss";
 
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background: #f8fafc;
+    color: #171717;
+  }
+
+  html.dark {
+    background: #05070a;
+    color: #f5f5f5;
+  }
+
+  body {
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
 @layer utilities {
 
   @keyframes drop-fade {
@@ -19,29 +42,189 @@
   }
 
   .nav-link {
-    @apply text-gray-500 hover:text-indigo-500 transition;
+    @apply rounded-full px-3 py-1 text-sm font-medium text-neutral-600 hover:bg-black/5 hover:text-neutral-950 transition;
   }
 }
 
 @layer components {
     .nav-bar-pill {
-      @apply flex items-center gap-8 justify-between gap-8
-            px-8 py-2 h-12
-            bg-white/80 border border-black/80
-            rounded-2xl backdrop-blur-sm shadow-md
-            w-full max-w-screen-lg mx-auto;
+      @apply mx-auto flex min-h-12 w-full max-w-5xl flex-wrap items-center gap-2
+            rounded-full border border-black/10 bg-white/70 px-4 py-2
+            shadow-lg shadow-black/5 backdrop-blur-xl;
+    }
+
+    .nav-name {
+      @apply whitespace-nowrap rounded-full px-3 py-1 text-sm font-semibold text-neutral-950 transition hover:bg-black/5;
+    }
+
+    .nav-separator {
+      @apply text-neutral-300;
+    }
+
+    .nav-items {
+      @apply flex flex-1 flex-wrap items-center justify-end gap-1;
+    }
+
+    .theme-toggle {
+      @apply inline-flex h-9 w-9 flex-none items-center justify-center rounded-full
+            border border-black/10 text-neutral-700 transition
+            hover:bg-black/5 hover:text-neutral-950;
+    }
+
+    .site-shell {
+      @apply mx-auto w-full max-w-5xl px-5 pb-28 pt-28 sm:px-8 lg:px-10;
+    }
+
+    .hero-section {
+      @apply grid min-h-[calc(100vh-7rem)] items-start gap-8 py-12 md:grid-cols-[168px_minmax(0,1fr)] md:items-center md:gap-12;
+    }
+
+    .profile-square {
+      @apply flex aspect-square w-32 items-center justify-center overflow-hidden rounded-lg
+            border border-black/10 bg-white/65 shadow-lg shadow-black/5 backdrop-blur-xl
+            sm:w-40;
+    }
+
+    .profile-square span {
+      @apply text-3xl font-extrabold tracking-normal text-neutral-900 sm:text-4xl;
+    }
+
+    .hero-copy {
+      @apply max-w-3xl space-y-5;
+    }
+
+    .eyebrow {
+      @apply text-sm font-semibold uppercase tracking-[0.18em] text-blue-600;
+    }
+
+    .hero-copy h1 {
+      @apply text-5xl font-extrabold tracking-normal text-neutral-950 sm:text-6xl lg:text-7xl;
+    }
+
+    .hero-lede {
+      @apply max-w-2xl text-lg leading-8 text-neutral-700 sm:text-xl;
+    }
+
+    .hero-callout {
+      @apply flex max-w-2xl flex-col gap-3 rounded-lg border border-emerald-500/25 bg-emerald-50/80
+            p-4 text-neutral-800 shadow-sm backdrop-blur sm:flex-row sm:items-center sm:justify-between;
+    }
+
+    .hero-callout p {
+      @apply text-sm font-medium leading-6;
+    }
+
+    .hero-callout a {
+      @apply whitespace-nowrap rounded-full bg-neutral-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-700;
+    }
+
+    .content-section {
+      @apply scroll-mt-28 py-14;
+    }
+
+    .section-heading {
+      @apply mb-6 max-w-3xl space-y-3;
+    }
+
+    .section-heading h2 {
+      @apply text-3xl font-extrabold tracking-normal text-neutral-950 sm:text-4xl;
+    }
+
+    .contribution-grid {
+      @apply grid gap-4 md:grid-cols-2;
+    }
+
+    .feature-card,
+    .blog-panel {
+      @apply rounded-lg border border-black/10 bg-white/70 p-6 shadow-lg shadow-black/5 backdrop-blur-xl;
+    }
+
+    .feature-card h3 {
+      @apply mb-3 text-xl font-bold text-neutral-950;
+    }
+
+    .feature-card p,
+    .blog-panel p {
+      @apply leading-7 text-neutral-700;
     }
 
     .footer-bar {
       @apply fixed inset-x-0 bottom-0
              z-40                       /* sit above most content */
              flex items-center justify-between
-             gap-8                       /* space between text & icons */
-             px-8 py-2 h-12              /* your sizing */
-             bg-white/80 border border-black/80
-             rounded-2xl backdrop-blur-sm shadow-md
-             w-full max-w-screen-lg
+             gap-8
+             px-8 py-2 h-12
+             bg-white/70 border border-black/10
+             rounded-2xl backdrop-blur-xl shadow-md
+             w-full max-w-5xl
              mx-auto
              flex-shrink-0;
     }
   }
+
+html.dark .nav-bar-pill,
+html.dark .profile-square,
+html.dark .feature-card,
+html.dark .blog-panel,
+html.dark .footer-bar {
+  border-color: rgb(255 255 255 / 0.14);
+  background: rgb(15 23 42 / 0.68);
+  color: #f5f5f5;
+}
+
+html.dark .nav-link,
+html.dark .nav-name,
+html.dark .theme-toggle,
+html.dark .footer-bar p {
+  color: rgb(245 245 245 / 0.78);
+}
+
+html.dark .nav-link:hover,
+html.dark .nav-name:hover,
+html.dark .theme-toggle:hover {
+  background: rgb(255 255 255 / 0.1);
+  color: #ffffff;
+}
+
+html.dark .nav-separator {
+  color: rgb(255 255 255 / 0.25);
+}
+
+html.dark .profile-square span,
+html.dark .hero-copy h1,
+html.dark .section-heading h2,
+html.dark .feature-card h3 {
+  color: #ffffff;
+}
+
+html.dark .hero-lede,
+html.dark .feature-card p,
+html.dark .blog-panel p {
+  color: rgb(245 245 245 / 0.74);
+}
+
+html.dark .hero-callout {
+  border-color: rgb(52 211 153 / 0.28);
+  background: rgb(6 78 59 / 0.38);
+  color: #ecfdf5;
+}
+
+html.dark .hero-callout a {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+@media (max-width: 520px) {
+  .nav-bar-pill {
+    border-radius: 1.25rem;
+  }
+
+  .nav-items {
+    justify-content: flex-start;
+  }
+
+  .nav-link {
+    padding-left: 0.625rem;
+    padding-right: 0.625rem;
+  }
+}
