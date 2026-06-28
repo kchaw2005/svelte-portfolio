@@ -3,6 +3,7 @@
 	import Footer from "$lib/components/footer.svelte";
 	import HugeiconsMoon02 from "~icons/hugeicons/moon-02";
 	import HugeiconsSun03 from "~icons/hugeicons/sun-03";
+	import LucideExternalLink from "~icons/lucide/external-link";
 	import { onMount } from "svelte";
 
 	let { children } = $props();
@@ -36,7 +37,7 @@
 
 		<div class="nav-items">
 			<a href="/#about" class="nav-link">About</a>
-			<a href="/#contributions" class="nav-link">Work</a>
+			<a href="/#projects" class="nav-link">Projects</a>
 			<a href="/#blog" class="nav-link">Writing</a>
 			<a
 				href="https://github.com/kchaw2005"
@@ -45,6 +46,7 @@
 				rel="noreferrer"
 			>
 				GitHub
+				<LucideExternalLink class="external-icon" aria-hidden="true" />
 			</a>
 			<button
 				type="button"

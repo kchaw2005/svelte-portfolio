@@ -21,13 +21,10 @@
 :root {
   --content-width: 760px;
   --page-gutter: 24px;
-  --avatar-size: 128px;
+  --avatar-size: 180px;
   --nav-bg: color-mix(in srgb, var(--color-surface) 80%, transparent);
   --shadow: light-dark(rgb(88 63 38 / 0.12), rgb(0 0 0 / 0.28));
   --separator: light-dark(rgb(117 105 88 / 0.45), rgb(243 234 220 / 0.35));
-  --tile-grad-a: light-dark(rgb(219 229 200 / 0.92), rgb(48 59 39 / 0.94));
-  --tile-grad-b: light-dark(rgb(255 249 237 / 0.92), rgb(34 37 29 / 0.94));
-  --panel-bg: light-dark(rgb(255 249 237 / 0.52), rgb(34 37 29 / 0.56));
 }
 
 html {
@@ -82,22 +79,6 @@ a {
 
 .animate-drop-fade {
   animation: drop-fade 0.5s ease-out forwards;
-}
-
-@keyframes fade-up {
-  0% {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-up {
-  animation: fade-up 0.5s ease-out forwards;
 }
 
 .nav-bar-pill {
@@ -161,10 +142,18 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 5px;
   width: auto;
   border: 1px solid transparent;
   padding: 0 11px;
   white-space: nowrap;
+}
+
+.external-icon {
+  width: 0.85em;
+  height: 0.85em;
+  flex-shrink: 0;
+  opacity: 0.7;
 }
 
 .theme-toggle {
@@ -197,31 +186,28 @@ a {
   border-bottom: 1px solid var(--color-line);
 }
 
-.profile-square {
-  display: flex;
+.profile-image {
+  display: block;
   width: var(--avatar-size);
-  aspect-ratio: 1;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 30px;
-  overflow: hidden;
+  height: var(--avatar-size);
+  margin: 0 auto 30px;
+  object-fit: cover;
   border: 1px solid color-mix(in srgb, var(--color-accent) 28%, transparent);
-  border-radius: 10px;
-  background:
-    linear-gradient(135deg, var(--tile-grad-a), var(--tile-grad-b)),
-    var(--color-surface);
+  border-radius: 16px;
   box-shadow: 0 18px 42px var(--shadow);
+  transition:
+    transform 260ms ease,
+    box-shadow 260ms ease;
 }
 
-.profile-square span {
-  color: var(--color-accent);
-  font-size: 2.25rem;
-  font-weight: 800;
-  letter-spacing: 0;
+.profile-image:hover {
+  transform: scale(1.06);
+  box-shadow: 0 24px 52px var(--shadow);
 }
 
 .hero-copy {
   max-width: 680px;
+  text-align: center;
 }
 
 .eyebrow {
@@ -244,101 +230,41 @@ a {
   text-wrap: balance;
 }
 
-.hero-lede {
-  max-width: 660px;
-  margin: 22px 0 0;
-  color: var(--color-muted);
-  font-size: clamp(1rem, 2.4vw, 1.125rem);
-  line-height: 1.8;
-  text-wrap: pretty;
-}
-
 .content-section {
   scroll-margin-top: 104px;
-  padding: 54px 0;
+  padding: 44px 0;
   border-bottom: 1px solid var(--color-line);
 }
 
-.section-heading {
-  max-width: 680px;
-  margin-bottom: 28px;
-}
-
-.section-heading h2 {
+.section-title {
   margin: 0;
   color: var(--color-text);
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 3.5vw, 2.1rem);
-  font-weight: 790;
+  font-size: 1.125rem;
+  font-weight: 720;
   letter-spacing: 0;
-  line-height: 1.2;
-  text-wrap: balance;
-}
-
-.about-text {
-  max-width: 680px;
-  margin: 0;
-  color: var(--color-muted);
-  font-size: 1.0625rem;
-  line-height: 1.8;
-  text-wrap: pretty;
-}
-
-.contribution-list {
-  border-top: 1px solid var(--color-line);
-}
-
-.contribution-item {
-  display: grid;
-  grid-template-columns: 156px minmax(0, 1fr);
-  gap: 24px;
-  padding: 24px 0;
-  border-bottom: 1px solid var(--color-line);
-}
-
-.contribution-item > p {
-  margin: 4px 0 0;
-  color: var(--color-clay);
-  font-size: 0.8125rem;
-  font-weight: 760;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.contribution-item h3 {
-  margin: 0 0 8px;
-  color: var(--color-text);
-  font-size: 1.25rem;
-  font-weight: 760;
-  letter-spacing: 0;
-  line-height: 1.35;
-  text-wrap: balance;
-}
-
-.contribution-item div,
-.blog-panel p {
-  margin: 0;
-  color: var(--color-muted);
-  font-size: 1rem;
-  line-height: 1.75;
-  text-wrap: pretty;
-}
-
-.blog-panel {
-  border-left: 4px solid var(--color-clay);
-  background: var(--panel-bg);
-  padding: 18px 22px;
+  line-height: 1.3;
 }
 
 .footer-bar {
+  position: relative;
   display: flex;
   width: min(var(--content-width), calc(100vw - (var(--page-gutter) * 2)));
+  min-height: 96px;
   margin: 0 auto;
   padding: 34px 0 52px;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
+  overflow: hidden;
   color: var(--color-muted);
+  container-type: inline-size;
+}
+
+.footer-bar p,
+.footer-bar nav {
+  position: relative;
+  z-index: 1;
 }
 
 .footer-bar p {
@@ -366,7 +292,7 @@ a {
 @media (max-width: 700px) {
   :root {
     --page-gutter: 20px;
-    --avatar-size: 112px;
+    --avatar-size: 150px;
   }
 
   .nav-bar-pill {
@@ -387,11 +313,6 @@ a {
 
   .intro-section {
     padding-top: 32px;
-  }
-
-  .contribution-item {
-    grid-template-columns: 1fr;
-    gap: 8px;
   }
 
   .footer-bar {

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Octopus from "$lib/components/octopus.svelte";
+
 	const year = new Date().getFullYear();
 
 	const socials = [
@@ -8,6 +10,8 @@
 </script>
 
 <footer class="footer-bar">
+	<Octopus />
+
 	<p>© {year} Kartike Chawla</p>
 
 	<nav aria-label="Social links">
