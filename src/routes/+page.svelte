@@ -1,45 +1,77 @@
+<script lang="ts">
+	import DotPortraitCanvas from "$lib/components/dot-portrait/DotPortraitCanvas.svelte";
+	import portraitUrl from "$lib/assets/kartike-face.jpeg";
+
+	// ——— edit your copy here ———
+	const lines = ["building @worldcoin"];
+</script>
+
 <svelte:head>
-	<title>Kartike Chawla — Software Developer</title>
-	<meta
-		name="description"
-		content="Kartike Chawla — software developer working on identity, developer tooling, and product infrastructure."
-	/>
-	<meta property="og:title" content="Kartike Chawla — Software Developer" />
-	<meta
-		property="og:description"
-		content="Software developer focused on identity, developer tooling, and product infrastructure."
-	/>
+	<title>Kartike Chawla</title>
 </svelte:head>
 
-<main class="site-shell">
-	<section id="home" class="intro-section">
-		<img
-			src="/assets/profile.jpg"
-			alt="Portrait of Kartike Chawla"
-			class="profile-image"
-			width="180"
-			height="180"
-		/>
+<div class="columns">
+	<div class="col col-side" aria-hidden="true"></div>
 
-		<div class="hero-copy">
-			<p class="eyebrow animate-drop-fade">Software Developer</p>
-			<h1 class="animate-drop-fade" style="animation-delay: 100ms">Kartike Chawla</h1>
-		</div>
-	</section>
+	<div class="col col-main">
+		{#each lines as line}
+			<p>{line}</p>
+		{/each}
+	</div>
 
-	<section id="about" class="content-section">
-		<h2 class="section-title">About</h2>
-	</section>
+	<div class="col col-portrait">
+		<DotPortraitCanvas imageSrc={portraitUrl} />
+	</div>
+</div>
 
-	<section id="projects" class="content-section">
-		<h2 class="section-title">Projects</h2>
-	</section>
+<style>
+	.columns {
+		display: grid;
+		min-height: calc(100svh - 72px);
+		align-items: center;
+		gap: clamp(16px, 3vw, 40px);
+		padding: clamp(24px, 5vw, 48px);
+		grid-template-columns: 1fr 2.4fr 1.2fr;
+	}
 
-	<section id="contributions" class="content-section">
-		<h2 class="section-title">Contributions</h2>
-	</section>
+	.col-main {
+		text-align: left;
+	}
 
-	<section id="blog" class="content-section">
-		<h2 class="section-title">Writing</h2>
-	</section>
-</main>
+	.col-main p {
+		margin: 0 0 0.6em;
+		font-size: clamp(1.75rem, 4vw, 3rem);
+		font-weight: 400;
+		line-height: 1.2;
+	}
+
+	.col-main p:last-child {
+		margin-bottom: 0;
+	}
+
+	.col-portrait {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	@media (max-width: 900px) {
+		.columns {
+			min-height: auto;
+			grid-template-columns: 1fr;
+			grid-template-rows: auto auto;
+		}
+
+		.col-side {
+			display: none;
+		}
+
+		.col-main {
+			order: 2;
+		}
+
+		.col-portrait {
+			order: 1;
+		}
+	}
+</style>
