@@ -1,7 +1,13 @@
 :root {
 	--bg: #f6f2ea;
 	--text: #1a1a18;
+	--muted: #6f6a5d; /* secondary text: dates, labels, descriptions */
+	--rule: #e2dccd; /* hairline dividers */
+	--card-border: #bcb4a0; /* project card border (resting) */
+	--card-border-hover: #d8d1bf; /* project card border (lighter, on hover) */
 	--font: "EB Garamond", "Garamond", "Times New Roman", serif;
+	--page-gutter: clamp(20px, 5vw, 48px);
+	--page-gap: clamp(16px, 3vw, 40px);
 }
 
 html,
@@ -12,6 +18,8 @@ body {
 	background: var(--bg);
 	color: var(--text);
 	font-family: var(--font);
+	font-size: 1.0625rem; /* ~17px — EB Garamond reads comfortably here */
+	line-height: 1.6;
 }
 
 * {
@@ -32,4 +40,22 @@ a {
 
 .site-main {
 	flex: 1;
+}
+
+.page-grid {
+	display: grid;
+	align-items: start;
+	gap: var(--page-gap);
+	padding-inline: var(--page-gutter);
+	grid-template-columns: 1fr 2.4fr 1.2fr;
+}
+
+@media (max-width: 900px) {
+	.page-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.page-grid .col-side {
+		display: none;
+	}
 }
